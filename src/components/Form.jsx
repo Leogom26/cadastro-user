@@ -13,15 +13,18 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
   const ref = useRef();
 
   useEffect(() => {
+    const user = ref.current;
     if (onEdit) {
-      const user = ref.current;
-
       user.nome.value = onEdit.nome;
       user.email.value = onEdit.email;
       user.fone.value = onEdit.fone;
       user.data_nascimento.value = new Date(onEdit.data_nascimento)
         .toISOString()
         .split("T")[0];
+    } else {
+      // Preenche a data atual automaticamente
+      const today = new Date().toISOString().split("T")[0];
+      user.data_nascimento.value = today;
     }
   }, [onEdit]);
 
@@ -96,7 +99,7 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
 
       <InputArea>
         <Label>Criando em:</Label>
-        <Input name="data_nascimento" type="date" />
+        <Input name="data_nascimento" type="date" readOnly />
       </InputArea>
 
       <Button type="submit">Salvar</Button>
