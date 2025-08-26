@@ -30,7 +30,7 @@ function App() {
     <>
       <GlobalStyle />
       <Container>
-        <Title>Usuarios</Title>
+        <Title>Agenda</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
         <Grid users={users} setUser={setUser} setOnEdit={setOnEdit} />
       </Container>
